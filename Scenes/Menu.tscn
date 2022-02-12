@@ -1,0 +1,241 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Prefabs/Dynamic_Fonts/UI_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Prefabs/TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Title_Menu.gd" type="Script" id=3]
+[ext_resource path="res://Assets/background/bg0-1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/background/bg1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/background/bg2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/background/bg0.png" type="Texture" id=7]
+[ext_resource path="res://Assets/background/bg3.png" type="Texture" id=8]
+[ext_resource path="res://Prefabs/Camera2D.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Prefabs/Leaf_Particles.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Menu_Settings.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/LoadGame_menu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/UI/logo_shadow.png" type="Texture" id=14]
+[ext_resource path="res://Assets/UI/logo_front.png" type="Texture" id=15]
+[ext_resource path="res://Prefabs/Shaders/shine_shader.tres" type="Shader" id=16]
+[ext_resource path="res://Assets/UI/buttons/button_newgame_normal.png" type="Texture" id=17]
+[ext_resource path="res://Assets/UI/buttons/button_newgame_select.png" type="Texture" id=18]
+[ext_resource path="res://Assets/UI/buttons/button_newgame_press.png" type="Texture" id=19]
+[ext_resource path="res://Assets/UI/buttons/button_continue_normal.png" type="Texture" id=20]
+[ext_resource path="res://Assets/UI/buttons/button_settings_select.png" type="Texture" id=21]
+[ext_resource path="res://Assets/UI/buttons/button_settings_normal.png" type="Texture" id=22]
+[ext_resource path="res://Assets/UI/buttons/button_continue_press.png" type="Texture" id=23]
+[ext_resource path="res://Assets/UI/buttons/button_settings_press.png" type="Texture" id=24]
+[ext_resource path="res://Assets/UI/buttons/button_continue_select.png" type="Texture" id=25]
+[ext_resource path="res://Assets/UI/buttons/button_quit_select.png" type="Texture" id=26]
+[ext_resource path="res://Assets/UI/buttons/button_quit_press.png" type="Texture" id=27]
+[ext_resource path="res://Assets/UI/buttons/button_quit_normal.png" type="Texture" id=28]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 16 )
+shader_param/shine_color = Color( 1, 1, 1, 0.901961 )
+shader_param/shine_speed = 2.0
+shader_param/shine_size = 0.01
+
+[node name="Title_Menu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 160.0 ]
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 640, 320 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 7 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -349, -16 )
+motion_scale = Vector2( 0.8, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 202, -28 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -137 )
+motion_scale = Vector2( 0.5, 0.9 )
+motion_mirroring = Vector2( 640, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -137 )
+motion_scale = Vector2( 0.3, 0.8 )
+motion_mirroring = Vector2( 640, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -137 )
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 640, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource( 8 )
+centered = false
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( 0, 38, 0, 1, 38, 0, 2, 38, 0, 3, 38, 0, 4, 38, 0, 5, 38, 0, 6, 38, 0, 7, 38, 0, 8, 38, 0, 9, 38, 0, 10, 38, 0, 11, 38, 0, 12, 38, 0, 13, 38, 0, 14, 38, 0, 15, 38, 0, 16, 38, 0, 17, 38, 0, 18, 38, 0, 19, 38, 0, 65536, 38, 0, 65555, 38, 0, 131072, 38, 0, 131091, 38, 0, 196608, 38, 0, 196627, 38, 0, 262144, 38, 0, 262156, 28, 0, 262163, 38, 0, 327680, 38, 0, 327699, 38, 0, 393216, 38, 0, 393235, 38, 0, 458752, 33, 0, 458753, 35, 0, 458754, 34, 0, 458755, 33, 0, 458756, 35, 0, 458757, 34, 0, 458758, 35, 0, 458759, 34, 0, 458760, 33, 0, 458761, 35, 0, 458762, 34, 0, 458763, 33, 0, 458764, 35, 0, 458765, 31, 0, 458766, 31, 0, 458767, 31, 0, 458768, 33, 0, 458769, 35, 0, 458770, 37, 0, 458771, 33, 0, 589805, 1, 0, 589806, 1, 0, 589807, 1, 0, 589808, 1, 0, 589809, 1, 0, 589810, 1, 0, 589811, 1, 0, 589812, 1, 0, 589813, 1, 0, 589814, 1, 0, 589815, 1, 0, 589816, 1, 0, 589817, 1, 0, 589818, 1, 0, 589819, 1, 0, 589820, 1, 0, 589821, 1, 0, 589822, 1, 0, 589823, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 524303, 1, 0, 524304, 1, 0, 524305, 1, 0, 524306, 1, 0, 524307, 1, 0, 524308, 1, 0, 524309, 1, 0, 524310, 1, 0, 524311, 1, 0, 524312, 1, 0, 524313, 1, 0, 524314, 1, 0, 524315, 1, 0, 524316, 1, 0, 524317, 1, 0, 524318, 1, 0, 524319, 1, 0, 524320, 1, 0, 524321, 1, 0, 524322, 1, 0, 524323, 1, 0, 524324, 1, 0, 524325, 1, 0, 524326, 1, 0, 655341, 4, 0, 655342, 4, 0, 655343, 4, 0, 655344, 4, 0, 655345, 4, 0, 655346, 4, 0, 655347, 4, 0, 655348, 4, 0, 655349, 4, 0, 655350, 4, 0, 655351, 4, 0, 655352, 4, 0, 655353, 4, 0, 655354, 4, 0, 655355, 4, 0, 655356, 4, 0, 655357, 4, 0, 655358, 4, 0, 655359, 4, 0, 589824, 4, 0, 589825, 4, 0, 589826, 4, 0, 589827, 4, 0, 589828, 4, 0, 589829, 4, 0, 589830, 4, 0, 589831, 4, 0, 589832, 4, 0, 589833, 4, 0, 589834, 4, 0, 589835, 4, 0, 589836, 4, 0, 589837, 4, 0, 589838, 4, 0, 589839, 4, 0, 589840, 4, 0, 589841, 4, 0, 589842, 4, 0, 589843, 4, 0, 589844, 4, 0, 589845, 4, 0, 589846, 4, 0, 589847, 4, 0, 589848, 4, 0, 589849, 4, 0, 589850, 4, 0, 589851, 4, 0, 589852, 4, 0, 589853, 4, 0, 589854, 4, 0, 589855, 4, 0, 589856, 4, 0, 589857, 4, 0, 589858, 4, 0, 589859, 4, 0, 589860, 4, 0, 589861, 4, 0, 589862, 4, 0, 720877, 4, 0, 720878, 4, 0, 720879, 4, 0, 720880, 4, 0, 720881, 4, 0, 720882, 4, 0, 720883, 4, 0, 720884, 4, 0, 720885, 4, 0, 720886, 4, 0, 720887, 4, 0, 720888, 4, 0, 720889, 4, 0, 720890, 4, 0, 720891, 4, 0, 720892, 4, 0, 720893, 4, 0, 720894, 4, 0, 720895, 4, 0, 655360, 4, 0, 655361, 4, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 4, 0, 655370, 4, 0, 655371, 4, 0, 655372, 4, 0, 655373, 4, 0, 655374, 4, 0, 655375, 4, 0, 655376, 4, 0, 655377, 4, 0, 655378, 4, 0, 655379, 4, 0, 655380, 4, 0, 655381, 4, 0, 655382, 4, 0, 655383, 4, 0, 655384, 4, 0, 655385, 4, 0, 655386, 4, 0, 655387, 4, 0, 655388, 4, 0, 655389, 4, 0, 655390, 4, 0, 655391, 4, 0, 655392, 4, 0, 655393, 4, 0, 655394, 4, 0, 655395, 4, 0, 655396, 4, 0, 655397, 4, 0, 655398, 4, 0, 786413, 4, 0, 786414, 4, 0, 786415, 4, 0, 786416, 4, 0, 786417, 4, 0, 786418, 4, 0, 786419, 4, 0, 786420, 4, 0, 786421, 4, 0, 786422, 4, 0, 786423, 4, 0, 786424, 4, 0, 786425, 4, 0, 786426, 4, 0, 786427, 4, 0, 786428, 4, 0, 786429, 4, 0, 786430, 4, 0, 786431, 4, 0, 720896, 4, 0, 720897, 4, 0, 720898, 4, 0, 720899, 4, 0, 720900, 4, 0, 720901, 4, 0, 720902, 4, 0, 720903, 4, 0, 720904, 4, 0, 720905, 4, 0, 720906, 4, 0, 720907, 4, 0, 720908, 4, 0, 720909, 4, 0, 720910, 4, 0, 720911, 4, 0, 720912, 4, 0, 720913, 4, 0, 720914, 4, 0, 720915, 4, 0, 720916, 4, 0, 720917, 4, 0, 720918, 4, 0, 720919, 4, 0, 720920, 4, 0, 720921, 4, 0, 720922, 4, 0, 720923, 4, 0, 720924, 4, 0, 720925, 4, 0, 720926, 4, 0, 720927, 4, 0, 720928, 4, 0, 720929, 4, 0, 720930, 4, 0, 720931, 4, 0, 720932, 4, 0, 720933, 4, 0, 720934, 4, 0 )
+
+[node name="Leaf_Particles" parent="." instance=ExtResource( 10 )]
+position = Vector2( 225, 90 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 9 )]
+position = Vector2( 160, 87 )
+limit_left = 0
+limit_top = 0
+limit_bottom = 180
+
+[node name="Menu" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+margin_left = 6.0
+margin_top = 44.0
+margin_right = 72.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="new_game" type="TextureButton" parent="Menu/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../quit_game")
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 18 )
+texture_disabled = ExtResource( 17 )
+texture_focused = ExtResource( 18 )
+
+[node name="continue" type="TextureButton" parent="Menu/VBoxContainer"]
+margin_top = 24.0
+margin_right = 80.0
+margin_bottom = 44.0
+focus_neighbour_top = NodePath("../new_game")
+focus_neighbour_bottom = NodePath("../settings")
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 23 )
+texture_hover = ExtResource( 25 )
+texture_disabled = ExtResource( 20 )
+texture_focused = ExtResource( 25 )
+
+[node name="settings" type="TextureButton" parent="Menu/VBoxContainer"]
+margin_top = 48.0
+margin_right = 80.0
+margin_bottom = 68.0
+focus_neighbour_top = NodePath("../continue")
+focus_neighbour_bottom = NodePath("../quit_game")
+texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 24 )
+texture_hover = ExtResource( 21 )
+texture_disabled = ExtResource( 22 )
+texture_focused = ExtResource( 21 )
+
+[node name="quit_game" type="TextureButton" parent="Menu/VBoxContainer"]
+margin_top = 72.0
+margin_right = 80.0
+margin_bottom = 92.0
+focus_neighbour_bottom = NodePath("../new_game")
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 27 )
+texture_hover = ExtResource( 26 )
+texture_disabled = ExtResource( 28 )
+texture_focused = ExtResource( 26 )
+
+[node name="Press_enter" type="Control" parent="."]
+margin_left = 160.0
+margin_top = 136.0
+margin_right = 160.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Press_enter"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = -7.0
+margin_right = 71.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 1 )
+text = "Press \"SPACE\" or \"START\""
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="press_timer" type="Timer" parent="Press_enter"]
+wait_time = 0.1
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 176.0
+margin_top = 159.0
+margin_right = 313.0
+margin_bottom = 173.0
+custom_fonts/font = ExtResource( 1 )
+text = "Version 1.0.4 (11/02/2022)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Node2D" parent="."]
+position = Vector2( 168, 72 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="LogoShadow" type="Sprite" parent="Title"]
+position = Vector2( -15, 0 )
+texture = ExtResource( 14 )
+
+[node name="LogoFront" type="Sprite" parent="Title"]
+material = SubResource( 1 )
+position = Vector2( -15, 0 )
+texture = ExtResource( 15 )
+
+[node name="Menu_Settings" parent="." instance=ExtResource( 12 )]
+visible = false
+
+[node name="LoadGame_menu" parent="." instance=ExtResource( 13 )]
+visible = false
+
+[node name="audio_manager" parent="." instance=ExtResource( 11 )]
+
+[connection signal="focus_exited" from="Menu/VBoxContainer/new_game" to="." method="_on_new_game_focus_exited"]
+[connection signal="pressed" from="Menu/VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="focus_exited" from="Menu/VBoxContainer/continue" to="." method="_on_continue_focus_exited"]
+[connection signal="pressed" from="Menu/VBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="focus_exited" from="Menu/VBoxContainer/settings" to="." method="_on_settings_focus_exited"]
+[connection signal="pressed" from="Menu/VBoxContainer/settings" to="." method="_on_settings_pressed"]
+[connection signal="focus_exited" from="Menu/VBoxContainer/quit_game" to="." method="_on_quit_game_focus_exited"]
+[connection signal="pressed" from="Menu/VBoxContainer/quit_game" to="." method="_on_quit_game_pressed"]
+[connection signal="timeout" from="Press_enter/press_timer" to="." method="_on_press_timer_timeout"]
+[connection signal="hide" from="Menu_Settings" to="." method="_on_Menu_Settings_hide"]
+[connection signal="visibility_changed" from="Menu_Settings" to="." method="_on_Menu_Settings_visibility_changed"]
+[connection signal="hide" from="LoadGame_menu" to="." method="_on_LoadGame_menu_hide"]
+[connection signal="visibility_changed" from="LoadGame_menu" to="." method="_on_LoadGame_menu_visibility_changed"]
+
+[editable path="LoadGame_menu"]

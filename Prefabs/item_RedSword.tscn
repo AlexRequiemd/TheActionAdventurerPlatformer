@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Prefabs/items/red_sword/red_sword_2.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Prefabs/items/red_sword/red_sword_1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Prefabs/items/red_sword/red_sword_3.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Prefabs/items/red_sword/red_sword_4.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 14.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="item_RedSword" type="Node2D"]
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 4
+playing = true
+
+[node name="item_RedSword_area" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="item_RedSword_area"]
+shape = SubResource( 2 )

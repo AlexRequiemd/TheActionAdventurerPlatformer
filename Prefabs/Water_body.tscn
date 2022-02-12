@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Prefabs/Shaders/water_shader.tres" type="Shader" id=1]
+[ext_resource path="res://Scripts/Water_body.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/smooth_path_modified.gd" type="Script" id=3]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/tint = Color( 0.87451, 0.670588, 1, 1 )
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[node name="Water_body" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="water_polygon" type="Polygon2D" parent="."]
+material = SubResource( 1 )
+color = Color( 0.878431, 0.682353, 1, 1 )
+
+[node name="water_border" type="Path2D" parent="."]
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="water_body_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water_body_area"]
+shape = SubResource( 3 )
+
+[node name="audio_manager" parent="." instance=ExtResource( 4 )]
+
+[connection signal="body_entered" from="water_body_area" to="." method="_on_water_body_area_body_entered"]
+[connection signal="body_exited" from="water_body_area" to="." method="_on_water_body_area_body_exited"]

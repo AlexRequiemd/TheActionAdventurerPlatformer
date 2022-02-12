@@ -1,0 +1,504 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Assets/UI/input_menu_bg.png" type="Texture" id=1]
+[ext_resource path="res://Prefabs/Shaders/InfiniteScrollTexture_shader.gdshader" type="Shader" id=2]
+[ext_resource path="res://Prefabs/Shaders/UI_shader_blur.tres" type="Shader" id=3]
+[ext_resource path="res://Prefabs/Button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/UI/Controls_image.PNG" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/ps_gamepad.png" type="Texture" id=6]
+[ext_resource path="res://Prefabs/Dynamic_Fonts/UI_font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Assets/UI/xb_gamepad.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Fonts/Questgiver.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Scripts/InputMap_Menu.gd" type="Script" id=10]
+[ext_resource path="res://Assets/UI/input_menu_bg0.png" type="Texture" id=11]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=12]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+shader_param/tint = Color( 0.0862745, 0, 0.196078, 1 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/Direction = Vector2( 1, 1 )
+shader_param/Speed = 0.05
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform vec2 Direction = vec2(1.0,0.0);
+uniform float Speed = 0.08;
+
+void fragment()
+{
+	COLOR = texture(TEXTURE, UV + (Direction * TIME * Speed));
+	
+	
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 5 )
+shader_param/Direction = Vector2( 0, 1 )
+shader_param/Speed = 0.08
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 2 )
+shader_param/Direction = Vector2( 0, 1 )
+shader_param/Speed = 0.08
+
+[sub_resource type="Animation" id=10]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PsGamepad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 320, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("XbGamepad:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PsGamepad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 320, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("XbGamepad:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -320, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PsGamepad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 320, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("XbGamepad:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -320, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=9]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 9 )
+
+[node name="InputMap_Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="Sprite" parent="Background"]
+texture = ExtResource( 11 )
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+visible = false
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0627451, 0.0313726, 0.0313726, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="Sprite" parent="Background"]
+modulate = Color( 1, 1, 1, 0.0627451 )
+material = SubResource( 2 )
+position = Vector2( 160, 92 )
+texture = ExtResource( 1 )
+
+[node name="CONTROLS1" type="Sprite" parent="Background"]
+modulate = Color( 1, 1, 1, 0.196078 )
+material = SubResource( 4 )
+position = Vector2( 24, 88 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="CONTROLS2" type="Sprite" parent="Background"]
+modulate = Color( 1, 1, 1, 0.196078 )
+material = SubResource( 6 )
+position = Vector2( 296, 88 )
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Button_group" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = -23.0
+margin_bottom = -12.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input_container" type="ScrollContainer" parent="Button_group"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_right = -41.0
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input_List" type="VBoxContainer" parent="Button_group/Input_container"]
+margin_bottom = 264.0
+custom_constants/separation = 24
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_container" type="Container" parent="Button_group/Input_container/Input_List"]
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "LEFT"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+focus_neighbour_top = NodePath("../../Button_container11/Button")
+action = "ui_left"
+
+[node name="Button_container2" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 24.0
+margin_bottom = 24.0
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container2"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "RIGHT"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container2" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+action = "ui_right"
+
+[node name="Button_container3" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 48.0
+margin_bottom = 48.0
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container3"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "UP"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container3" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+
+[node name="Button_container4" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 72.0
+margin_bottom = 72.0
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container4"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "DOWN"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container4" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+action = "ui_down"
+
+[node name="Button_container5" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 96.0
+margin_bottom = 96.0
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container5"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "ATTACK"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container5" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+action = "ui_action"
+
+[node name="Button_container6" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 120.0
+margin_bottom = 120.0
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container6"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "DASH"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container6" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+action = "ui_shift"
+
+[node name="Button_container7" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 144.0
+margin_bottom = 144.0
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container7"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "JUMP"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container7" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+action = "ui_select"
+
+[node name="Button_container8" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 168.0
+margin_bottom = 168.0
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container8"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "DEFENSE"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container8" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+action = "ui_defense"
+
+[node name="Button_container9" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 192.0
+margin_bottom = 192.0
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container9"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "PAUSE"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container9" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+action = "ui_start"
+
+[node name="Button_container10" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 216.0
+margin_bottom = 216.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container10"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "MAP"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container10" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+action = "ui_map"
+
+[node name="Button_container11" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 240.0
+margin_bottom = 240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input_name" type="Label" parent="Button_group/Input_container/Input_List/Button_container11"]
+margin_right = 25.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "SPECIAL"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Button_group/Input_container/Input_List/Button_container11" instance=ExtResource( 4 )]
+margin_left = 96.0
+margin_right = 176.0
+focus_neighbour_bottom = NodePath("../../Button_container/Button")
+action = "ui_magic"
+
+[node name="Button_List_end" type="Container" parent="Button_group/Input_container/Input_List"]
+margin_top = 264.0
+margin_bottom = 264.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hint" type="Label" parent="Button_group"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -116.5
+margin_top = -24.0
+margin_right = 115.5
+margin_bottom = -10.0
+custom_fonts/font = ExtResource( 7 )
+text = "Click a button to change the indicated input"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gamepad_input" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XbGamepad" type="Sprite" parent="Gamepad_input"]
+texture = ExtResource( 8 )
+centered = false
+
+[node name="PsGamepad" type="Sprite" parent="Gamepad_input"]
+position = Vector2( 320, 0 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="anim" type="AnimationPlayer" parent="Gamepad_input"]
+autoplay = "default"
+anims/default = SubResource( 10 )
+anims/in = SubResource( 7 )
+anims/out = SubResource( 8 )
+
+[node name="hint3" type="Label" parent="Gamepad_input"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -125.5
+margin_right = 125.5
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 7 )
+text = "Press LEFT/RIGHT to change the gamepad type"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hint2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -152.0
+margin_top = 166.0
+margin_right = 80.0
+margin_bottom = 180.0
+custom_fonts/font = SubResource( 9 )
+text = "Escape: show/hide gamepad"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hint_timer" type="Timer" parent="hint2"]
+wait_time = 0.1
+autostart = true
+
+[node name="audio_manager" parent="." instance=ExtResource( 12 )]
+
+[connection signal="timeout" from="hint2/hint_timer" to="." method="_on_hint_timer_timeout"]

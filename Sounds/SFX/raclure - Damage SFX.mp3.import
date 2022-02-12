@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/raclure - Damage SFX.mp3-03c309ebbbcf0e10f86c31d2c389a8b1.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SFX/raclure - Damage SFX.mp3"
+dest_files=[ "res://.import/raclure - Damage SFX.mp3-03c309ebbbcf0e10f86c31d2c389a8b1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

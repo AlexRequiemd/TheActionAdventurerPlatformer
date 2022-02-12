@@ -1,0 +1,197 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Character/Gal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Fonts/Silver.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/Credits_Screen.gd" type="Script" id=3]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "full_color"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "normal"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "fade-in"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "fade-out"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "full_color"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "normal"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Credits_Screen" type="Node"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gal" parent="." instance=ExtResource( 1 )]
+position = Vector2( 160, 96 )
+follow_player = false
+
+[node name="the_end" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 128.0
+margin_top = 112.0
+margin_right = 192.0
+margin_bottom = 133.0
+custom_fonts/font = SubResource( 1 )
+text = "THE END"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="theend_anim" type="AnimationPlayer" parent="the_end"]
+autoplay = "normal"
+anims/full_color = SubResource( 2 )
+anims/in = SubResource( 3 )
+anims/normal = SubResource( 4 )
+
+[node name="Credits_Group" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text_Line" type="Label" parent="Credits_Group"]
+margin_top = 180.0
+margin_right = 320.0
+margin_bottom = 201.0
+custom_fonts/font = SubResource( 1 )
+text = "Text Line"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="audio_manager" parent="." instance=ExtResource( 4 )]
+
+[node name="TheEnd_Timer" type="Timer" parent="."]
+wait_time = 98.0
+one_shot = true
+
+[node name="Fade_In_Black" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Fade_In_Black"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim_fade_black" type="AnimationPlayer" parent="Fade_In_Black/ColorRect"]
+autoplay = "normal"
+anims/fade-in = SubResource( 5 )
+anims/fade-out = SubResource( 6 )
+anims/full_color = SubResource( 7 )
+anims/normal = SubResource( 8 )
+
+[connection signal="animation_finished" from="the_end/theend_anim" to="." method="_on_theend_anim_animation_finished"]
+[connection signal="timeout" from="TheEnd_Timer" to="." method="_on_TheEnd_Timer_timeout"]
+[connection signal="animation_finished" from="Fade_In_Black/ColorRect/anim_fade_black" to="." method="_on_anim_fade_black_animation_finished"]

@@ -1,0 +1,330 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Assets/Fonts/Questgiver.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Prefabs/Shaders/UI_shader_blur.tres" type="Shader" id=2]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=3]
+[ext_resource path="res://Prefabs/Dynamic_Fonts/UI_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Enemy_index_Ui.gd" type="Script" id=6]
+[ext_resource path="res://Prefabs/Map_Ui.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/UI/Map_frame.png" type="Texture" id=9]
+[ext_resource path="res://Assets/UI/Map_frame_2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/UI/enemy_ui_frame.png" type="Texture" id=11]
+[ext_resource path="res://Assets/UI/buttons/button_resume_select.png" type="Texture" id=12]
+[ext_resource path="res://Assets/UI/buttons/button_resume_normal.png" type="Texture" id=13]
+[ext_resource path="res://Assets/UI/buttons/button_resume_press.png" type="Texture" id=14]
+[ext_resource path="res://Assets/UI/buttons/button_map_normal.png" type="Texture" id=15]
+[ext_resource path="res://Assets/UI/buttons/button_map_select.png" type="Texture" id=16]
+[ext_resource path="res://Assets/UI/buttons/button_map_press.png" type="Texture" id=17]
+[ext_resource path="res://Assets/UI/buttons/button_mainmenu_select.png" type="Texture" id=18]
+[ext_resource path="res://Assets/UI/buttons/button_mainmenu_press.png" type="Texture" id=19]
+[ext_resource path="res://Assets/UI/buttons/button_mainmenu_normal.png" type="Texture" id=20]
+[ext_resource path="res://Assets/UI/buttons/button_quit_select.png" type="Texture" id=21]
+[ext_resource path="res://Assets/UI/buttons/button_quit_press.png" type="Texture" id=22]
+[ext_resource path="res://Assets/UI/buttons/button_quit_normal.png" type="Texture" id=23]
+[ext_resource path="res://Assets/UI/buttons/button_tryagain_normal.png" type="Texture" id=24]
+[ext_resource path="res://Assets/UI/buttons/button_tryagain_press.png" type="Texture" id=25]
+[ext_resource path="res://Assets/UI/buttons/button_tryagain_select.png" type="Texture" id=26]
+[ext_resource path="res://Assets/UI/menurectangle-wide.png" type="Texture" id=27]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/tint = Color( 0, 0, 0, 0.352941 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 2 )
+shader_param/tint = Color( 0, 0, 0, 0.352941 )
+
+[node name="UI" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+script = ExtResource( 3 )
+
+[node name="enemy_index" type="CanvasLayer" parent="."]
+script = ExtResource( 6 )
+
+[node name="Enemy_Ui" type="Control" parent="enemy_index"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="enemy_index/Enemy_Ui"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 223.0
+margin_top = -31.0
+margin_right = -7.0
+margin_bottom = -7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="enemy_index/Enemy_Ui/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -7.0
+margin_right = 40.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 4 )
+text = "Enemy_Name"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyUiFrame" type="Sprite" parent="enemy_index/Enemy_Ui/Panel"]
+position = Vector2( 44, 11 )
+texture = ExtResource( 11 )
+
+[node name="E_Ui_timer" type="Timer" parent="enemy_index"]
+wait_time = 3.0
+one_shot = true
+
+[node name="pause" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 2
+
+[node name="Ui1" type="Control" parent="pause"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="pause/Ui1"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.352941 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="pause/Ui1"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -48.0
+margin_top = 19.0
+margin_right = 48.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 1 )
+text = "Paused"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="TextureRect" parent="pause/Ui1"]
+modulate = Color( 1, 1, 1, 0.862745 )
+anchor_top = 0.280556
+anchor_right = 1.0
+anchor_bottom = 0.719444
+texture = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause/Ui1/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.5
+margin_top = -34.0
+margin_right = 37.5
+margin_bottom = 34.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="resume" type="TextureButton" parent="pause/Ui1/Panel/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../main_menu")
+focus_neighbour_bottom = NodePath("../map")
+size_flags_vertical = 3
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 12 )
+texture_disabled = ExtResource( 13 )
+texture_focused = ExtResource( 12 )
+
+[node name="map" type="TextureButton" parent="pause/Ui1/Panel/VBoxContainer"]
+margin_top = 24.0
+margin_right = 80.0
+margin_bottom = 44.0
+focus_neighbour_top = NodePath("../resume")
+focus_neighbour_bottom = NodePath("../main_menu")
+size_flags_vertical = 3
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 16 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 16 )
+
+[node name="main_menu" type="TextureButton" parent="pause/Ui1/Panel/VBoxContainer"]
+margin_top = 48.0
+margin_right = 80.0
+margin_bottom = 68.0
+focus_neighbour_top = NodePath("../map")
+focus_neighbour_bottom = NodePath("../resume")
+size_flags_vertical = 3
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 18 )
+texture_disabled = ExtResource( 20 )
+texture_focused = ExtResource( 18 )
+
+[node name="Map_UI" type="Control" parent="pause"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -145.0
+margin_top = -75.0
+margin_right = 145.0
+margin_bottom = 75.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="pause/Map_UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="pause/Map_UI/ViewportContainer"]
+size = Vector2( 290, 150 )
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Map" parent="pause/Map_UI/ViewportContainer/Viewport" instance=ExtResource( 8 )]
+
+[node name="MapFrame" type="Sprite" parent="pause/Map_UI"]
+position = Vector2( 145, 75 )
+texture = ExtResource( 9 )
+
+[node name="MapFrame_2" type="Sprite" parent="pause/Map_UI"]
+position = Vector2( 145, 75 )
+texture = ExtResource( 10 )
+
+[node name="map_ui_timer" type="Timer" parent="pause/Map_UI"]
+wait_time = 0.05
+autostart = true
+
+[node name="failed" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 2
+
+[node name="Ui2" type="Control" parent="failed"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="failed/Ui2"]
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.352941 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="failed/Ui2"]
+modulate = Color( 100, 1.5, 1.5, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -54.0
+margin_top = 19.0
+margin_right = 54.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 1 )
+text = "You Failed"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="TextureRect" parent="failed/Ui2"]
+modulate = Color( 1, 1, 1, 0.862745 )
+anchor_top = 0.280556
+anchor_right = 1.0
+anchor_bottom = 0.719444
+texture = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="failed/Ui2/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.5
+margin_top = -22.0
+margin_right = 37.5
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="try_again" type="TextureButton" parent="failed/Ui2/Panel/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../quit_menu")
+size_flags_vertical = 3
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 25 )
+texture_hover = ExtResource( 26 )
+texture_disabled = ExtResource( 24 )
+texture_focused = ExtResource( 26 )
+
+[node name="quit_menu" type="TextureButton" parent="failed/Ui2/Panel/VBoxContainer"]
+margin_top = 24.0
+margin_right = 80.0
+margin_bottom = 44.0
+focus_neighbour_bottom = NodePath("../try_again")
+size_flags_vertical = 3
+texture_normal = ExtResource( 23 )
+texture_pressed = ExtResource( 22 )
+texture_hover = ExtResource( 21 )
+texture_disabled = ExtResource( 23 )
+texture_focused = ExtResource( 21 )
+
+[node name="audio_manager" parent="." instance=ExtResource( 5 )]
+
+[connection signal="timeout" from="enemy_index/E_Ui_timer" to="enemy_index" method="_on_E_Ui_timer_timeout"]
+[connection signal="focus_exited" from="pause/Ui1/Panel/VBoxContainer/resume" to="." method="_on_resume_focus_exited"]
+[connection signal="pressed" from="pause/Ui1/Panel/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="focus_exited" from="pause/Ui1/Panel/VBoxContainer/map" to="." method="_on_map_focus_exited"]
+[connection signal="pressed" from="pause/Ui1/Panel/VBoxContainer/map" to="." method="_on_map_pressed"]
+[connection signal="focus_exited" from="pause/Ui1/Panel/VBoxContainer/main_menu" to="." method="_on_main_menu_focus_exited"]
+[connection signal="pressed" from="pause/Ui1/Panel/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="timeout" from="pause/Map_UI/map_ui_timer" to="." method="_on_map_ui_timer_timeout"]
+[connection signal="focus_exited" from="failed/Ui2/Panel/VBoxContainer/try_again" to="." method="_on_try_again_focus_exited"]
+[connection signal="pressed" from="failed/Ui2/Panel/VBoxContainer/try_again" to="." method="_on_try_again_pressed"]
+[connection signal="focus_exited" from="failed/Ui2/Panel/VBoxContainer/quit_menu" to="." method="_on_quit_menu_focus_exited"]
+[connection signal="pressed" from="failed/Ui2/Panel/VBoxContainer/quit_menu" to="." method="_on_quit_menu_pressed"]

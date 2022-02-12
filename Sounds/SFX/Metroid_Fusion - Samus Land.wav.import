@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Metroid_Fusion - Samus Land.wav-8a08e64f649224acfe0813a59f0d30a7.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Metroid_Fusion - Samus Land.wav"
+dest_files=[ "res://.import/Metroid_Fusion - Samus Land.wav-8a08e64f649224acfe0813a59f0d30a7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

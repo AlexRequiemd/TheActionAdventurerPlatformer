@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/konstati - Slime attack.wav-c25fcaff055150164ff81237aff38193.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/konstati - Slime attack.wav"
+dest_files=[ "res://.import/konstati - Slime attack.wav-c25fcaff055150164ff81237aff38193.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

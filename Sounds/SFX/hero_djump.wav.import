@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hero_djump.wav-dba7935d2b66c7e720aedbf43b802267.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/hero_djump.wav"
+dest_files=[ "res://.import/hero_djump.wav-dba7935d2b66c7e720aedbf43b802267.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

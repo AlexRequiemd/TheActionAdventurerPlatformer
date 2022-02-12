@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/UI/HP/Chome-HP_life_2.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/HP/Chome-HP_drain_2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/HP/Chome-HP_overlay_2.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Lifebar.gd" type="Script" id=4]
+[ext_resource path="res://Assets/UI/HP/Chome-HP_back_2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/HP/Chome-MP_magic.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/HP/Chome-MP_drain.png" type="Texture" id=7]
+
+[node name="Lifebar" type="TextureProgress"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_under = ExtResource( 5 )
+texture_over = ExtResource( 3 )
+texture_progress_offset = Vector2( 47, 5 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L_Delay" type="TextureProgress" parent="."]
+margin_left = 48.0
+margin_top = 3.0
+margin_right = 112.0
+margin_bottom = 43.0
+texture_progress = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="M_Delay" type="TextureProgress" parent="."]
+margin_left = 48.0
+margin_top = 9.0
+margin_right = 112.0
+margin_bottom = 49.0
+texture_progress = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Life" type="TextureProgress" parent="."]
+margin_left = 48.0
+margin_top = 3.0
+margin_right = 112.0
+margin_bottom = 43.0
+value = 100.0
+texture_progress = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mana" type="TextureProgress" parent="."]
+margin_left = 48.0
+margin_top = 9.0
+margin_right = 112.0
+margin_bottom = 49.0
+value = 100.0
+texture_progress = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

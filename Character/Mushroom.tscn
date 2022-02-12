@@ -1,0 +1,160 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_06.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_09.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemies/Mushroom/death/Death_04.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemies/Mushroom/idle/Idle_01.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Enemies/Mushroom/run/Run_06.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemies/Mushroom/run/Run_03.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_05.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Enemies/Mushroom/run/Run_05.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_11.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Enemies/Mushroom/death/Death_03.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Enemies/Mushroom/run/Run_01.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_02.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Enemies/Mushroom/death/Death_02.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Enemies/Mushroom/take hit/Take-Hit_03.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_10.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Enemies/Mushroom/idle/Idle_03.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Enemies/Mushroom/take hit/Take-Hit_01.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Enemies/Mushroom/run/Run_07.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Enemies/Mushroom/idle/Idle_04.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Enemies/Mushroom/run/Run_02.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Enemies/Mushroom/take hit/Take-Hit_02.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Enemies/Mushroom/run/Run_04.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_04.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_07.png" type="Texture" id=24]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Assets/Enemies/Mushroom/take hit/Take-Hit_04.png" type="Texture" id=26]
+[ext_resource path="res://Prefabs/Enemy_HUD.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Assets/Enemies/Mushroom/death/Death_01.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Enemies/Mushroom/run/Run_08.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_08.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_01.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Enemies/Mushroom/attack shot/Attack_shot_03.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Enemies/Mushroom/idle/Idle_02.png" type="Texture" id=33]
+[ext_resource path="res://Scripts/Mushroom.gd" type="Script" id=34]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 33 ), ExtResource( 16 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "idle",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 12 ), ExtResource( 32 ), ExtResource( 23 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 24 ), ExtResource( 30 ), ExtResource( 2 ), ExtResource( 15 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "attack",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 3 ) ],
+"loop": false,
+"name": "die",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 33 ), ExtResource( 16 ), ExtResource( 19 ) ],
+"loop": false,
+"name": "fall",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 20 ), ExtResource( 6 ), ExtResource( 22 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 18 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "run",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 21 ), ExtResource( 14 ), ExtResource( 26 ) ],
+"loop": false,
+"name": "hurt",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.5, 18.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16, 21.5 )
+
+[node name="Mushroom" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 72
+script = ExtResource( 34 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1, -26 )
+frames = SubResource( 1 )
+animation = "idle"
+frame = 2
+playing = true
+flip_h = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, -18.5 )
+shape = SubResource( 2 )
+
+[node name="attackreset_timer" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+
+[node name="knockback_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="movestop_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="raycast_dir1" type="RayCast2D" parent="."]
+modulate = Color( 0.941176, 1, 0.419608, 1 )
+position = Vector2( -2, -17 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 90 )
+
+[node name="raycast_dir2" type="RayCast2D" parent="."]
+modulate = Color( 0.941176, 1, 0.419608, 1 )
+position = Vector2( 2, -17 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 90 )
+
+[node name="raycast_attack" type="RayCast2D" parent="."]
+modulate = Color( 0.898039, 0, 0.823529, 1 )
+position = Vector2( 0, -10 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 160 )
+
+[node name="raycast_wall" type="RayCast2D" parent="."]
+position = Vector2( 0, -2 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 16 )
+collision_mask = 8
+
+[node name="hurtbox" type="Area2D" parent="." groups=["E_Hurtbox"]]
+collision_layer = 256
+collision_mask = 1088
+
+[node name="hurtbox_collision" type="CollisionShape2D" parent="hurtbox"]
+self_modulate = Color( 0.843137, 0, 0.545098, 0.364706 )
+position = Vector2( 0, -21.5 )
+shape = SubResource( 4 )
+
+[node name="alpha_tween" type="Tween" parent="."]
+
+[node name="audio_manager" parent="." instance=ExtResource( 25 )]
+
+[node name="Enemy_HUD" parent="." instance=ExtResource( 27 )]
+visible = false
+margin_top = -67.0
+margin_bottom = -67.0
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="timeout" from="attackreset_timer" to="." method="_on_attackreset_timer_timeout"]
+[connection signal="timeout" from="knockback_timer" to="." method="_on_knockback_timer_timeout"]
+[connection signal="timeout" from="movestop_timer" to="." method="_on_movestop_timer_timeout"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="tween_completed" from="alpha_tween" to="." method="_on_alpha_tween_tween_completed"]
+[connection signal="timeout" from="Enemy_HUD/timer" to="." method="_on_timer_timeout"]
+
+[editable path="Enemy_HUD"]

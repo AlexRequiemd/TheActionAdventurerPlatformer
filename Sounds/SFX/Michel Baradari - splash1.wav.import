@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Michel Baradari - splash1.wav-be7c28e0eaad78b3ca72229c7fa8e997.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Michel Baradari - splash1.wav"
+dest_files=[ "res://.import/Michel Baradari - splash1.wav-be7c28e0eaad78b3ca72229c7fa8e997.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

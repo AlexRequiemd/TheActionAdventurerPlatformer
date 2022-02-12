@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/michel88 - Monster Grunt1.wav-76c5ca2a29315f091fca65d9941472d0.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/michel88 - Monster Grunt1.wav"
+dest_files=[ "res://.import/michel88 - Monster Grunt1.wav-76c5ca2a29315f091fca65d9941472d0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/independent.nu - heartbeat.wav-b25cfef27e4e274e973a55ec884375e6.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/independent.nu - heartbeat.wav"
+dest_files=[ "res://.import/independent.nu - heartbeat.wav-b25cfef27e4e274e973a55ec884375e6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

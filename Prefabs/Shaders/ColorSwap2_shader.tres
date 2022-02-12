@@ -1,0 +1,44 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+
+uniform vec4 COLOR1: hint_color;
+uniform vec4 COLOR2: hint_color;
+uniform vec4 COLOR3: hint_color;
+uniform vec4 COLOR4: hint_color;
+uniform vec4 COLOR5: hint_color;
+uniform vec4 COLOR6: hint_color;
+uniform vec4 COLOR7: hint_color;
+uniform vec4 COLOR8: hint_color;
+uniform vec4 COLOR9: hint_color;
+uniform vec4 COLOR10: hint_color;
+uniform vec4 NEW_COLOR1: hint_color;
+uniform vec4 NEW_COLOR2: hint_color;
+uniform vec4 NEW_COLOR3: hint_color;
+uniform vec4 NEW_COLOR4: hint_color;
+uniform vec4 NEW_COLOR5: hint_color;
+uniform vec4 NEW_COLOR6: hint_color;
+uniform vec4 NEW_COLOR7: hint_color;
+uniform vec4 NEW_COLOR8: hint_color;
+uniform vec4 NEW_COLOR9: hint_color;
+uniform vec4 NEW_COLOR10: hint_color;
+const float precision = 0.1;
+
+
+vec4 swap_color(vec4 color){
+	vec4 original_colors[10] = vec4[10] (COLOR1, COLOR2, COLOR3, COLOR4, COLOR5, COLOR6, COLOR7, COLOR8, COLOR9, COLOR10);
+	vec4 replace_colors[10] = vec4[10] (NEW_COLOR1, NEW_COLOR2, NEW_COLOR3, NEW_COLOR4, NEW_COLOR5, NEW_COLOR6, NEW_COLOR7, NEW_COLOR8, NEW_COLOR9, NEW_COLOR10);
+	for (int i = 0; i < 10; i ++) {
+		if (distance(color, original_colors[i]) <= precision){
+			return replace_colors[i];
+		}
+	}
+	return color;
+}
+
+
+void fragment() {
+	COLOR = swap_color(texture(TEXTURE, UV));
+}"

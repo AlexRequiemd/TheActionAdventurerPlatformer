@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hero_atk2.wav-289526dd31e0c8e20b271cf8eb4f0dbc.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/hero_atk2.wav"
+dest_files=[ "res://.import/hero_atk2.wav-289526dd31e0c8e20b271cf8eb4f0dbc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

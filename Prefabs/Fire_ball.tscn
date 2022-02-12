@@ -1,0 +1,101 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal5.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal_explode2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal_explode5.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal_explode6.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal_explode7.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal_explode3.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal_explode8.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal_explode1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal6.png" type="Texture" id=11]
+[ext_resource path="res://Assets/FX/smoke/smoke.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal_explode4.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Projectiles/Fireball/firebal3.png" type="Texture" id=14]
+[ext_resource path="res://Scripts/Fire_ball.gd" type="Script" id=15]
+[ext_resource path="res://Assets/Prefabs/light.png" type="Texture" id=16]
+
+[sub_resource type="Environment" id=8]
+background_mode = 4
+background_energy = 0.04
+glow_enabled = true
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 1 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "normal",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "destroy",
+"speed": 16.0
+} ]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.0878661, 0.288703, 0.811715, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0.014881, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.24504, 0.790323 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 1
+emission_sphere_radius = 5.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( -98, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.5, 8.5 )
+
+[node name="Fire_ball" type="Node2D"]
+script = ExtResource( 15 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="Light2D" type="Light2D" parent="."]
+enabled = false
+texture = ExtResource( 16 )
+color = Color( 1, 0.494118, 0, 1 )
+energy = 2.0
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+modulate = Color( 1.5, 1, 1, 1 )
+frames = SubResource( 1 )
+animation = "normal"
+frame = 2
+playing = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+modulate = Color( 1.5, 1, 1, 1 )
+position = Vector2( -5, 0 )
+process_material = SubResource( 7 )
+texture = ExtResource( 12 )
+
+[node name="fireball_area" type="Area2D" parent="." groups=["P_projectile"]]
+collision_layer = 1024
+collision_mask = 522
+
+[node name="collision" type="CollisionShape2D" parent="fireball_area"]
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 2 )
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="area_entered" from="fireball_area" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="fireball_area" to="." method="_on_Area2D_body_entered"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hero_slide.wav-8ade3b0ccbe2fc160b45a2769a99518e.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/hero_slide.wav"
+dest_files=[ "res://.import/hero_slide.wav-8ade3b0ccbe2fc160b45a2769a99518e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

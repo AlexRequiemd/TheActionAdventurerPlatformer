@@ -1,0 +1,57 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Enemies/Mushroom/projectile/Projectile_03.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Enemies/Mushroom/projectile/Projectile_08.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemies/Mushroom/projectile/Projectile_05.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemies/Mushroom/projectile/Projectile_06.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Enemies/Mushroom/projectile/Projectile_04.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemies/Mushroom/projectile/Projectile_07.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Enemies/Mushroom/projectile/Projectile_01.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Enemies/Mushroom/projectile/Projectile_02.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/Proctile_Mushroom.gd" type="Script" id=9]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 5.0
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "explode",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "activate",
+"speed": 8.0
+} ]
+
+[node name="Proctile_Mushroom" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 9 )
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "normal"
+playing = true
+offset = Vector2( -1, -1 )
+
+[node name="Timer1" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="timeout" from="Timer1" to="." method="_on_Timer1_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]

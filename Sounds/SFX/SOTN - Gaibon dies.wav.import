@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SOTN - Gaibon dies.wav-cb92c12eb26e3abf9aec1cc1b9b3e7fe.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/SOTN - Gaibon dies.wav"
+dest_files=[ "res://.import/SOTN - Gaibon dies.wav-cb92c12eb26e3abf9aec1cc1b9b3e7fe.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

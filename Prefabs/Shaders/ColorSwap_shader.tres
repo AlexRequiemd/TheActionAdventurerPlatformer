@@ -1,0 +1,36 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform vec4 COLOR1 : hint_color;
+uniform vec4 COLOR2 : hint_color;
+uniform vec4 COLOR3 : hint_color;
+
+uniform vec4 NEW_COLOR1 : hint_color;
+uniform vec4 NEW_COLOR2 : hint_color;
+uniform vec4 NEW_COLOR3 : hint_color;
+
+void fragment() {
+	vec4 current_color = texture(TEXTURE, UV); //Pega a cor atual
+	
+	//Checa se a current_color é igual a uma das COLORs
+	//Se a checagem bater, a cor mudará para uma das NEW_COLORs
+	//Caso o contrário, a cor retornará para a original (current_color)
+	if (current_color == COLOR1)
+	{
+		COLOR = NEW_COLOR1;
+	}
+	else if (current_color == COLOR2)
+	{
+		COLOR = NEW_COLOR2;
+	}
+	else if (current_color == COLOR3)
+	{
+		COLOR = NEW_COLOR3;
+	}
+	else
+	{
+		COLOR = current_color;
+	}
+}"

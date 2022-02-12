@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/UI/text_box.png" type="Texture" id=1]
+[ext_resource path="res://Prefabs/Dynamic_Fonts/Dialogue_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/UI/textbox_icon.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Dialogue_Box.gd" type="Script" id=4]
+[ext_resource path="res://Prefabs/Shaders/UI_shader_blur.tres" type="Shader" id=5]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 5 )
+shader_param/tint = Color( 1, 1, 1, 0 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 274, 66 ), Vector2( 274, 70 ) ]
+}
+
+[node name="Dialogue_System" type="CanvasLayer"]
+pause_mode = 2
+__meta__ = {
+"_edit_horizontal_guides_": [ 117.125 ]
+}
+
+[node name="Dialogue_Box" type="Control" parent="."]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.978
+anchor_right = 0.5
+anchor_bottom = 0.978
+margin_left = -144.0
+margin_top = -84.04
+margin_right = 144.0
+margin_bottom = -4.04001
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Dialogue_File = "res://Dialogues/dialog_0.json"
+
+[node name="ColorRect" type="ColorRect" parent="Dialogue_Box"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Dialogue_Box"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Dialogue_Box"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = -145.0
+margin_bottom = -55.0
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = " Name"
+text = " Name"
+scroll_active = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Dialogue_Box"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 25.0
+margin_right = -7.0
+margin_bottom = -7.0
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = " Lorem ipsum"
+text = " Lorem ipsum"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="Sprite" parent="Dialogue_Box"]
+position = Vector2( 274, 66.2477 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dialogue_Box/icon"]
+autoplay = "idle"
+anims/idle = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="Dialogue_Box"]
+
+[connection signal="tween_completed" from="Dialogue_Box/Tween" to="Dialogue_Box" method="_on_Tween_tween_completed"]

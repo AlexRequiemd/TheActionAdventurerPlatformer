@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fessfessor - Hero Death.wav-d1059cf8ae599a1d8cd199d700ac45bf.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/fessfessor - Hero Death.wav"
+dest_files=[ "res://.import/fessfessor - Hero Death.wav-d1059cf8ae599a1d8cd199d700ac45bf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

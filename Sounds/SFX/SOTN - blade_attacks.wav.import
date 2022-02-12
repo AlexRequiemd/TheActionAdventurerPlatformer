@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SOTN - blade_attacks.wav-2ef99090e6162191e7ea337f8e8ea071.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/SOTN - blade_attacks.wav"
+dest_files=[ "res://.import/SOTN - blade_attacks.wav-2ef99090e6162191e7ea337f8e8ea071.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

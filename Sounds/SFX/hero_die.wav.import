@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hero_die.wav-73d86e755252fd3a6476aa0f30c75ab7.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/hero_die.wav"
+dest_files=[ "res://.import/hero_die.wav-73d86e755252fd3a6476aa0f30c75ab7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

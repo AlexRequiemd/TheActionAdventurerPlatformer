@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SOTN - blade_wounded.wav-98d5c501a98ca79bfb0ce6d11b225938.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/SOTN - blade_wounded.wav"
+dest_files=[ "res://.import/SOTN - blade_wounded.wav-98d5c501a98ca79bfb0ce6d11b225938.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

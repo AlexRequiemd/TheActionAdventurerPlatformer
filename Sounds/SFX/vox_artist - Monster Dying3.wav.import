@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/vox_artist - Monster Dying3.wav-327b5ea65d3e9b10ee0511b1fc3dc72a.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/vox_artist - Monster Dying3.wav"
+dest_files=[ "res://.import/vox_artist - Monster Dying3.wav-327b5ea65d3e9b10ee0511b1fc3dc72a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

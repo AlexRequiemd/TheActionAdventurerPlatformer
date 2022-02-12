@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/konstati - Slime pursuit.wav-2f5434c0eb03d4d72f9a876650109ad8.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/konstati - Slime pursuit.wav"
+dest_files=[ "res://.import/konstati - Slime pursuit.wav-2f5434c0eb03d4d72f9a876650109ad8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

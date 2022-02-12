@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Prefabs/Shaders/UI_shader_blur.tres" type="Shader" id=1]
+[ext_resource path="res://Scripts/Upgrade_Get_Screen.gd" type="Script" id=2]
+[ext_resource path="res://Assets/UI/upgrade_get/get_upgrade_LIFEUP.png" type="Texture" id=3]
+[ext_resource path="res://Prefabs/Themes/Video_menu_theme.tres" type="Theme" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/tint = Color( 0, 0.333333, 0.282353, 0.509804 )
+
+[node name="Upgrade_Get_Screen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="Get_Upgrade" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="ColorRect" parent="Get_Upgrade"]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Get_Upgrade"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="text" type="Label" parent="Get_Upgrade"]
+modulate = Color( 0.952941, 1, 0.447059, 1 )
+margin_left = 32.0
+margin_top = 48.0
+margin_right = 288.0
+margin_bottom = 144.0
+theme = ExtResource( 4 )
+text = "Increase Max Health"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+pause_mode = 2
+wait_time = 4.0
+one_shot = true
+
+[connection signal="visibility_changed" from="Get_Upgrade" to="." method="_on_Get_Upgrade_visibility_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

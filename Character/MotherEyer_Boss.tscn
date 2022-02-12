@@ -1,0 +1,147 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head0.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_0_dmg5.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_0_dmg2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_0_dmg4.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_0_dmg0.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_0_dmg8.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_0_dmg7.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_0_dmg1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_0_dmg6.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_0_dmg3.png" type="Texture" id=10]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/MotherEyer_Boss.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head1.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dmg0.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dmg4.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dmg5.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dmg1.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dmg3.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dmg2.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dmg7.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dmg8.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dmg6.png" type="Texture" id=22]
+[ext_resource path="res://Assets/UI/Boss_HP/boss_hp_progress.png" type="Texture" id=23]
+[ext_resource path="res://Assets/UI/Boss_HP/boss_hp_delay.png" type="Texture" id=24]
+[ext_resource path="res://Assets/UI/Boss_HP/boss_hp_back.png" type="Texture" id=25]
+[ext_resource path="res://Assets/UI/Boss_HP/boss_hp_overlay.png" type="Texture" id=26]
+[ext_resource path="res://Scripts/Boss_Lifebar.gd" type="Script" id=27]
+[ext_resource path="res://Assets/Enemies/Boss_MotherEye/head_1_dead.png" type="Texture" id=28]
+[ext_resource path="res://Prefabs/Explosion_Boss.tscn" type="PackedScene" id=29]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "p2_idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 17 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": false,
+"name": "p2_hurt",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "hurt",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "die",
+"speed": 36.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 32.0
+
+[node name="MotherEyer_Boss" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_vertical_guides_": [ 160.0 ]
+}
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+flip_h = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="knockback_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="hurtbox" type="Area2D" parent="." groups=["E_Hurtbox"]]
+collision_layer = 256
+collision_mask = 1088
+
+[node name="hurtbox_collision" type="CollisionShape2D" parent="hurtbox"]
+self_modulate = Color( 0.843137, 0, 0.545098, 0.364706 )
+shape = SubResource( 3 )
+
+[node name="audio_manager" parent="." instance=ExtResource( 11 )]
+
+[node name="Boss_HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 27 )
+
+[node name="Lifebar" type="TextureProgress" parent="Boss_HUD"]
+margin_left = 96.0
+margin_top = 160.0
+margin_right = 226.0
+margin_bottom = 179.0
+texture_over = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L_Delay" type="TextureProgress" parent="Boss_HUD/Lifebar"]
+margin_left = 1.0
+margin_top = 14.0
+margin_right = 129.0
+margin_bottom = 18.0
+texture_under = ExtResource( 25 )
+texture_progress = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Life" type="TextureProgress" parent="Boss_HUD/Lifebar"]
+margin_left = 1.0
+margin_top = 14.0
+margin_right = 129.0
+margin_bottom = 18.0
+value = 100.0
+texture_progress = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Boss_HUD/Lifebar"]
+wait_time = 0.05
+
+[node name="Explosion_Boss" parent="." instance=ExtResource( 29 )]
+
+[node name="Particles2D" parent="Explosion_Boss" index="0"]
+emitting = false
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="timeout" from="knockback_timer" to="." method="_on_knockback_timer_timeout"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Boss_HUD/Lifebar/Timer" to="Boss_HUD" method="_on_Timer_timeout"]
+
+[editable path="Explosion_Boss"]

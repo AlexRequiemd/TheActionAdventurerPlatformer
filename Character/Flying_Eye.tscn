@@ -1,0 +1,155 @@
+[gd_scene load_steps=42 format=2]
+
+[ext_resource path="res://Assets/Enemies/Flying eye/flight/Flight_01.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Enemies/Flying eye/flight/Flight_02.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemies/Flying eye/flight/Flight_03.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemies/Flying eye/flight/Flight_04.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Enemies/Flying eye/flight/Flight_05.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Enemies/Flying eye/flight/Flight_06.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Enemies/Flying eye/flight/Flight_07.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Enemies/Flying eye/flight/Flight_08.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/E_FlyingEye.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Enemies/Flying eye/take hit/Take-Hit_02.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Enemies/Flying eye/take hit/Take-Hit_04.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Enemies/Flying eye/take hit/Take-Hit_01.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Enemies/Flying eye/take hit/Take-Hit_03.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_10.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_01.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_02.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_05.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_06.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_07.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_08.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_03.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_04.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Enemies/Flying eye/death/Death_02.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Enemies/Flying eye/death/Death_03.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Enemies/Flying eye/death/Death_04.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Enemies/Flying eye/death/Death_01.png" type="Texture" id=26]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Assets/Enemies/Flying eye/attack/Attack_07.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Enemies/Flying eye/attack/Attack_05.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Enemies/Flying eye/attack/Attack_08.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Enemies/Flying eye/attack/Attack_02.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Enemies/Flying eye/death2/Death_09.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Enemies/Flying eye/attack/Attack_01.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Enemies/Flying eye/attack/Attack_03.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Enemies/Flying eye/attack/Attack_04.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Enemies/Flying eye/attack/Attack_06.png" type="Texture" id=36]
+[ext_resource path="res://Prefabs/Enemy_HUD.tscn" type="PackedScene" id=37]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 32 ), ExtResource( 14 ) ],
+"loop": false,
+"name": "die",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "run",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"loop": false,
+"name": "fall",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "hurt",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 33 ), ExtResource( 31 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 29 ), ExtResource( 36 ), ExtResource( 28 ), ExtResource( 30 ) ],
+"loop": false,
+"name": "attack",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9, 9 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 11, 11 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 20, 14 )
+
+[node name="Flying Eye" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 576
+script = ExtResource( 9 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 3, -26 )
+frames = SubResource( 1 )
+animation = "run"
+frame = 3
+playing = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( 8, -23 )
+shape = SubResource( 2 )
+
+[node name="attackreset_timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="knockback_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="movestop_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="hitbox" type="Area2D" parent="." groups=["E_Hitbox"]]
+position = Vector2( 7, -1 )
+collision_layer = 128
+collision_mask = 32
+
+[node name="attack_hitbox" type="CollisionShape2D" parent="hitbox"]
+modulate = Color( 0.51, 1, 0.550833, 1 )
+position = Vector2( 1, -22 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="hurtbox" type="Area2D" parent="." groups=["E_Hurtbox"]]
+position = Vector2( 8, 0 )
+collision_layer = 256
+collision_mask = 1088
+
+[node name="hurtbox_collision" type="CollisionShape2D" parent="hurtbox"]
+self_modulate = Color( 0.843137, 0, 0.545098, 0.364706 )
+position = Vector2( 0, -23 )
+shape = SubResource( 4 )
+
+[node name="alpha_tween" type="Tween" parent="."]
+
+[node name="audio_manager" parent="." instance=ExtResource( 27 )]
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 10, -33 )
+
+[node name="Enemy_HUD" parent="." instance=ExtResource( 37 )]
+visible = false
+margin_left = 8.0
+margin_top = -48.0
+margin_right = 8.0
+margin_bottom = -48.0
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="timeout" from="attackreset_timer" to="." method="_on_attackreset_timer_timeout"]
+[connection signal="timeout" from="knockback_timer" to="." method="_on_knockback_timer_timeout"]
+[connection signal="timeout" from="movestop_timer" to="." method="_on_movestop_timer_timeout"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="tween_completed" from="alpha_tween" to="." method="_on_alpha_tween_tween_completed"]
+[connection signal="timeout" from="Enemy_HUD/timer" to="." method="_on_timer_timeout"]
+
+[editable path="Enemy_HUD"]

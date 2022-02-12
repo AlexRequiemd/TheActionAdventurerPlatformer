@@ -1,0 +1,271 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Prefabs/Tileset/MapTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Assets/UI/8x8chrome.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/map_cursor.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Map_Ui.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Cells_map.gd" type="Script" id=5]
+[ext_resource path="res://Assets/UI/map_cel.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/map_bg.png" type="Texture" id=7]
+
+[node name="Map" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+minimap_enabled = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 320, 184 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 7 )
+centered = false
+
+[node name="Camera_mapmenu" type="Camera2D" parent="."]
+anchor_mode = 0
+limit_left = -640
+limit_top = -360
+limit_right = 640
+limit_bottom = 360
+editor_draw_limits = true
+
+[node name="ColorRect" type="ColorRect" parent="Camera_mapmenu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0.313726, 0.313726, 0.313726, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera_minimap" type="Camera2D" parent="."]
+visible = false
+position = Vector2( 20, 68 )
+zoom = Vector2( 0.5, 0.5 )
+limit_left = -640
+limit_top = -360
+limit_right = 640
+limit_bottom = 360
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_speed = 2.0
+editor_draw_limits = true
+
+[node name="ColorRect2" type="ColorRect" parent="Camera_minimap"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -84.0
+margin_top = -48.0
+margin_right = 84.0
+margin_bottom = 48.0
+color = Color( 0.313726, 0.313726, 0.313726, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 8, 8 )
+cell_quadrant_size = 8
+format = 1
+tile_data = PoolIntArray( 458754, 8, 0, 458755, 9, 0, 458756, 9, 0, 458757, 9, 0, 458758, 10, 0, 458759, 115, 0, 458760, 35, 0, 524290, 14, 0, 524291, 15, 0, 524292, 15, 0, 524293, 52, 0, 524294, 49, 0, 524295, 62, 0, 524296, 75, 0, 524297, 25, 0, 524298, 56, 0, 524299, 147, 0, 524300, 54, 0, 524301, 1, 0, 589829, 21, 0, 589831, 50, 0, 589837, 145, 0, 655365, 50, 0 )
+
+[node name="minmap_cursor" type="Node2D" parent="."]
+position = Vector2( 20, 68 )
+script = ExtResource( 3 )
+
+[node name="texture" type="Sprite" parent="minmap_cursor"]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 336, 160, 8, 8 )
+
+[node name="Timer" type="Timer" parent="minmap_cursor"]
+wait_time = 0.05
+autostart = true
+
+[node name="Cells" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cel_0" type="TextureRect" parent="Cells"]
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 24.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="cel_1" type="TextureRect" parent="Cells"]
+margin_left = 24.0
+margin_top = 56.0
+margin_right = 32.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="cel_2" type="TextureRect" parent="Cells"]
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 40.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="cel_3" type="TextureRect" parent="Cells"]
+margin_left = 40.0
+margin_top = 56.0
+margin_right = 48.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="cel_4" type="TextureRect" parent="Cells"]
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 56.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="cel_5" type="TextureRect" parent="Cells"]
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 24.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_6" type="TextureRect" parent="Cells"]
+margin_left = 24.0
+margin_top = 64.0
+margin_right = 32.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_7" type="TextureRect" parent="Cells"]
+margin_left = 32.0
+margin_top = 64.0
+margin_right = 40.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_8" type="TextureRect" parent="Cells"]
+margin_left = 40.0
+margin_top = 64.0
+margin_right = 48.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_9" type="TextureRect" parent="Cells"]
+margin_left = 48.0
+margin_top = 64.0
+margin_right = 56.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_10" type="TextureRect" parent="Cells"]
+margin_left = 40.0
+margin_top = 72.0
+margin_right = 48.0
+margin_bottom = 80.0
+texture = ExtResource( 6 )
+
+[node name="cel_11" type="TextureRect" parent="Cells"]
+margin_left = 40.0
+margin_top = 80.0
+margin_right = 48.0
+margin_bottom = 88.0
+texture = ExtResource( 6 )
+
+[node name="cel_12" type="TextureRect" parent="Cells"]
+margin_left = 64.0
+margin_top = 56.0
+margin_right = 72.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="cel_13" type="TextureRect" parent="Cells"]
+margin_left = 56.0
+margin_top = 64.0
+margin_right = 64.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_14" type="TextureRect" parent="Cells"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 72.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_15" type="TextureRect" parent="Cells"]
+margin_left = 72.0
+margin_top = 64.0
+margin_right = 80.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_16" type="TextureRect" parent="Cells"]
+margin_left = 80.0
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_17" type="TextureRect" parent="Cells"]
+margin_left = 56.0
+margin_top = 72.0
+margin_right = 64.0
+margin_bottom = 80.0
+texture = ExtResource( 6 )
+
+[node name="cel_18" type="TextureRect" parent="Cells"]
+margin_left = 88.0
+margin_top = 64.0
+margin_right = 96.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_19" type="TextureRect" parent="Cells"]
+margin_left = 56.0
+margin_top = 56.0
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cel_20" type="TextureRect" parent="Cells"]
+margin_left = 96.0
+margin_top = 64.0
+margin_right = 104.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_21" type="TextureRect" parent="Cells"]
+margin_left = 104.0
+margin_top = 64.0
+margin_right = 112.0
+margin_bottom = 72.0
+texture = ExtResource( 6 )
+
+[node name="cel_22" type="TextureRect" parent="Cells"]
+margin_left = 104.0
+margin_top = 72.0
+margin_right = 112.0
+margin_bottom = 80.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="minmap_cursor/Timer" to="minmap_cursor" method="_on_Timer_timeout"]

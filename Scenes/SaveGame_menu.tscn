@@ -1,0 +1,208 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Prefabs/Dynamic_Fonts/UI_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/Questgiver.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Prefabs/Shaders/UI_shader_blur.tres" type="Shader" id=3]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/SaveGame_menu.gd" type="Script" id=5]
+[ext_resource path="res://Assets/UI/buttons/button_yes_select.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/buttons/button_no_press.png" type="Texture" id=7]
+[ext_resource path="res://Assets/UI/buttons/button_no_select.png" type="Texture" id=8]
+[ext_resource path="res://Assets/UI/buttons/button_no_normal.png" type="Texture" id=9]
+[ext_resource path="res://Assets/UI/buttons/button_yes_press.png" type="Texture" id=10]
+[ext_resource path="res://Assets/UI/buttons/button_yes_normal.png" type="Texture" id=11]
+[ext_resource path="res://Assets/UI/menurectangle-wide.png" type="Texture" id=12]
+[ext_resource path="res://Assets/UI/save_panel_2.png" type="Texture" id=13]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+shader_param/tint = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 3 )
+shader_param/tint = Color( 0, 0, 0, 0.352941 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+extra_spacing_space = -1
+font_data = ExtResource( 2 )
+
+[node name="SaveGame_menu" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 5 )
+
+[node name="SaveGame" type="Control" parent="."]
+pause_mode = 2
+visible = false
+margin_right = 320.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="SaveGame"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="SaveGame"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -58.0
+margin_top = 19.0
+margin_right = 58.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 3 )
+text = "Save Game"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="TextureRect" parent="SaveGame"]
+modulate = Color( 1, 1, 1, 0.862745 )
+anchor_top = 0.280556
+anchor_right = 1.0
+anchor_bottom = 0.719444
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SaveGame/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.5
+margin_top = -22.0
+margin_right = 37.5
+margin_bottom = 22.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="yes" type="TextureButton" parent="SaveGame/Panel/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../no")
+focus_neighbour_bottom = NodePath("../no")
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 11 )
+texture_focused = ExtResource( 6 )
+
+[node name="no" type="TextureButton" parent="SaveGame/Panel/VBoxContainer"]
+margin_top = 24.0
+margin_right = 80.0
+margin_bottom = 44.0
+focus_neighbour_top = NodePath("../yes")
+focus_neighbour_bottom = NodePath("../yes")
+size_flags_vertical = 3
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
+texture_disabled = ExtResource( 9 )
+texture_focused = ExtResource( 8 )
+
+[node name="audio_manager" parent="." instance=ExtResource( 4 )]
+
+[node name="Saving_popup" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="saving_bg" type="ColorRect" parent="Saving_popup"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="TextureRect" parent="Saving_popup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -45.0
+margin_right = 80.0
+margin_bottom = 45.0
+texture = ExtResource( 13 )
+
+[node name="please_wait" type="Label" parent="Saving_popup/Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -35.5
+margin_right = 35.5
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 1 )
+text = "Prease Wait..."
+align = 1
+valign = 1
+
+[node name="message" type="Label" parent="Saving_popup/Panel"]
+modulate = Color( 0.996078, 1, 0.584314, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -59.0
+margin_top = -16.0
+margin_right = 59.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 5 )
+text = "Don't turn off your PC
+ or 
+close the game"
+align = 1
+
+[node name="succes_saved" type="Label" parent="Saving_popup/Panel"]
+visible = false
+modulate = Color( 0.694118, 0.996078, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.5
+margin_top = -15.5
+margin_right = 70.5
+margin_bottom = 15.5
+custom_fonts/font = ExtResource( 1 )
+text = "Successfully Saved!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="saving_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="visibility_changed" from="SaveGame" to="." method="_on_SaveGame_visibility_changed"]
+[connection signal="focus_exited" from="SaveGame/Panel/VBoxContainer/yes" to="." method="_on_yes_focus_exited"]
+[connection signal="pressed" from="SaveGame/Panel/VBoxContainer/yes" to="." method="_on_yes_pressed"]
+[connection signal="focus_exited" from="SaveGame/Panel/VBoxContainer/no" to="." method="_on_no_focus_exited"]
+[connection signal="pressed" from="SaveGame/Panel/VBoxContainer/no" to="." method="_on_no_pressed"]
+[connection signal="timeout" from="saving_timer" to="." method="_on_saving_timer_timeout"]
